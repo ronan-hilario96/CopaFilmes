@@ -1,32 +1,30 @@
 <template>
-  <div id="app">
-    <div id="nav">
-      <router-link to="/">Home</router-link> |
-      <router-link to="/about">About</router-link>
-    </div>
-    <router-view/>
-  </div>
+<v-app>
+    <v-content>
+      <router-view/>
+    </v-content>
+
+    <v-bottom-sheet v-model="erroServico" persistent>
+      <v-sheet class="text-center" height="200px">
+        <v-btn class="mt-6" flat color="error" @click="tentarNovamente">Tentar Novamente</v-btn>
+        <div class="py-6 display-3" >Serviço fora do ar</div>
+      </v-sheet>
+    </v-bottom-sheet>
+  </v-app>
 </template>
 
-<style lang="scss">
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-}
 
-#nav {
-  padding: 30px;
+<script>
+import { mapState } from "vuex";
 
-  a {
-    font-weight: bold;
-    color: #2c3e50;
-
-    &.router-link-exact-active {
-      color: #42b983;
+export default {
+  computed: {
+    ...mapState(["erroServico"]),
+  },
+  methods: {
+    tentarNovamente: function () {
+      this.$store.dispatch("obterFilmes")
     }
-  }
+  },
 }
-</style>
+</script>

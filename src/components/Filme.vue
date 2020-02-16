@@ -1,9 +1,9 @@
 <template>
   <v-card class="mx-auto d-flex myCard" @click="selectedCard">
-    <v-checkbox v-model="filmesDados.selecionado" @click="selectedCard"/>
+    <v-checkbox v-model="selecionado" @click="selectedCard"/>
     <v-card outlined class="romover-default">
-      <v-card-title class="headline">{{filmesDados.titulo}}</v-card-title>
-      <v-card-subtitle class="pb-0">{{filmesDados.ano}}</v-card-subtitle>
+      <v-card-title>{{filmesDados.titulo}}</v-card-title>
+      <v-card-subtitle>{{filmesDados.ano}}</v-card-subtitle>
     </v-card>
   </v-card>
 </template>
@@ -12,11 +12,8 @@
 import { mapState } from "vuex";
 export default {
   data: () => ({
-    filmesDados: {
-      selecionado: false,
-      titulo: "Titulo",
-      ano: 2018
-    }
+    selecionado: false,
+    filmesDados: {}
   }),
   props: ["id", "titulo", "ano"],
   computed: {
@@ -33,7 +30,7 @@ export default {
 
           this.$store.commit("adicionarFilme", filmeSelecionado[0]);
 
-          this.filmesDados.selecionado = true;
+          this.selecionado = true;
         }
       }
     },
@@ -44,16 +41,20 @@ export default {
       {
         this.$store.commit("removerFilme", filmeSelecionado[0]);
 
-        this.filmesDados.selecionado = false;
+        this.selecionado = false;
       }
     },
     selectedCard: function() {
-      !this.filmesDados.selecionado ? this.adicionar() : this.remover()
+      !this.selecionado ? this.adicionar() : this.remover()
     }
   },
-  mounted() {
+  beforeMount() {
     this.filmesDados.titulo = this.titulo;
     this.filmesDados.ano = this.ano;
+    let _id = this.id;
+    let selecionado = this.filmesSelecionados.filter(x => x.id == _id)
+
+    this.selecionado = !!selecionado.length
   }
 };
 </script>

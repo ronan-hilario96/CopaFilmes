@@ -1,18 +1,39 @@
 <template>
-  <div class="home">
-    <img alt="Vue logo" src="../assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
-  </div>
+  <v-container>
+    <CardPrincipal titulo="CAMPEONATO DE FILMES" subtitulo="Fase de Seleção">
+      <p>Selecione 8 filmes que você deseja que entrem na competição e depois precione o botão Gerar Meu Campeonato para prosseguir.</p>
+    </CardPrincipal>
+    <v-row class="justify-center align-center">
+      <v-col cols="6">
+        <p>Selecionados</p>
+        <p>{{qtdFilmes}} de 8 filmes</p>
+      </v-col>
+      <v-col cols="6" class="text-right">
+        <v-btn :disabled="qtdFilmes != 8" to="/resultado">Gerar Meu Campeonato</v-btn>
+      </v-col>
+    </v-row>
+    <ListaFilmes />
+  </v-container>
 </template>
 
 <script>
-// @ is an alias to /src
-import HelloWorld from '@/components/HelloWorld.vue'
+import CardPrincipal from "../components/CardPrincipal";
+import ListaFilmes from "../components/ListaFilmes";
+import { mapState } from "vuex";
 
 export default {
   name: 'Home',
   components: {
-    HelloWorld
-  }
+    CardPrincipal,
+    ListaFilmes
+  },
+  computed: {
+    ...mapState(["filmesSelecionados"]),
+    qtdFilmes: function() {
+      return this.filmesSelecionados.length;
+    }
+  },
+  methods: {
+  },
 }
 </script>

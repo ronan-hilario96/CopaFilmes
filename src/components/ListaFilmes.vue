@@ -1,13 +1,11 @@
 <template>
-  <v-container>
-    <v-row>
-      <template v-for="filme in filmes">
-        <v-col :key="filme.id" cols="3">
-          <Filme :id="filme.id" :titulo="filme.titulo" :ano="filmes.ano" />
-        </v-col>
-      </template>
-    </v-row>
-  </v-container>
+  <v-row>
+    <template v-for="filme in filmes">
+      <v-col :key="filme.id" cols="3">
+        <Filme :id="filme.id" :titulo="filme.titulo" :ano="filme.ano" />
+      </v-col>
+    </template>
+  </v-row>
 </template>
 
 <script>

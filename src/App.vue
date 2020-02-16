@@ -1,38 +1,32 @@
 <template>
-  <v-app>
-    <v-content>
-      <ListaFilmes :filmes="filmes" />
-    </v-content>
-  </v-app>
+  <div id="app">
+    <div id="nav">
+      <router-link to="/">Home</router-link> |
+      <router-link to="/about">About</router-link>
+    </div>
+    <router-view/>
+  </div>
 </template>
 
-<script>
-import ListaFilmes from "./components/ListaFilmes";
-import axios from "axios";
+<style lang="scss">
+#app {
+  font-family: Avenir, Helvetica, Arial, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-align: center;
+  color: #2c3e50;
+}
 
-export default {
-  name: "App",
-  data: () => ({
-    filmes: []
-  }),
-  components: {
-    ListaFilmes
-  },
-  methods: {
-    ObterFilmes: async function () {
-      // TODO: tratar erro
-      let listaFilmes = await axios.get("https://localhost:44306/v1/CopaFilmes/Obter");
+#nav {
+  padding: 30px;
 
-      if(listaFilmes.data.length)
-      {
-        for(let posicao = 0; posicao < listaFilmes.data.length; posicao++)
-          listaFilmes.data[posicao].selecionado = false
-        this.filmes = listaFilmes.data
-      }
+  a {
+    font-weight: bold;
+    color: #2c3e50;
+
+    &.router-link-exact-active {
+      color: #42b983;
     }
-  },
-  mounted() {
-    this.ObterFilmes();
   }
-};
-</script>
+}
+</style>

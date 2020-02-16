@@ -3,7 +3,7 @@
     <v-row>
       <template v-for="filme in filmes">
         <v-col :key="filme.id" cols="3">
-          <Filme :selecionado="filme.selecionado" :titulo="filme.titulo" :ano="filme.ano" />
+          <Filme :id="filme.id" :titulo="filme.titulo" :ano="filmes.ano" />
         </v-col>
       </template>
     </v-row>
@@ -12,10 +12,18 @@
 
 <script>
 import Filme from "./Filme";
+import { mapState } from "vuex";
+
 export default {
-  props: ["filmes"],
   components: {
     Filme
+  },
+  data: () => ({}),
+  computed: {
+    ...mapState(['filmes', 'filmesSelecionados'])
+  },
+  mounted() {
+    this.$store.dispatch("obterFilmes")
   }
 };
 </script>

@@ -3,23 +3,30 @@ using System.Collections.Generic;
 using System.Net.Http;
 using System.Text.Json;
 using System.Threading.Tasks;
+using backend.Interface;
 using backend.Model;
 using Microsoft.AspNetCore.Mvc;
-using backend.Controllers;
 
-namespace backend.API
+namespace backend.Controller
 {
     [ApiController]
     [Route("v1/[controller]")]
     public class CopaFilmes
     {
+        private readonly ICampeonatoRegras _campeonatoRegras;
+
+        public CopaFilmes(ICampeonatoRegras campeonatoRegras)
+        {
+            _campeonatoRegras = campeonatoRegras;
+        }
+
         private readonly string URLCOPA = "http://copafilmes.azurewebsites.net/api/filmes";
 
         [HttpPost]
         [Route("Resultado")]
         public List<Filme> Resultado(List<Filme> listaFilmes)
         {
-            return new FilmesController().Campeao(listaFilmes);
+            return _campeonatoRegras.Campeao(listaFilmes);
         }
 
         [HttpGet]

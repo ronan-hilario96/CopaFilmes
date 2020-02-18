@@ -1,9 +1,8 @@
 using backend;
-using backend.API;
-using backend.Controllers;
+using backend.Controller;
+using backend.Regra;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.TestHost;
-using System;
 using System.Linq;
 using System.Net.Http;
 using TesteCopaFilmes.Mock;
@@ -26,11 +25,11 @@ namespace TesteCopaFilmes
         [Fact]
         public async void TesteLogicaMock()
         {
-            var controller = new FilmesController();
+            var regras = new CampeonatoRegras();
 
             var filmes = MockFilmes.listFilmes.Take(8);
 
-            var vencedores = controller.Campeao(filmes.ToList());
+            var vencedores = regras.Campeao(filmes.ToList());
 
             Assert.Equal("Vingadores: Guerra Infinita", vencedores.First().titulo);
         }
@@ -38,7 +37,7 @@ namespace TesteCopaFilmes
         [Fact]
         public async void TesteLogicaIntegrado()
         {
-            var controller = new CopaFilmes();
+            var controller = new CopaFilmes(new CampeonatoRegras());
 
             var filmes = controller.Filmes().Result;
 

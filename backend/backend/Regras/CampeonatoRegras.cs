@@ -1,13 +1,12 @@
-﻿using backend.Model;
-using Microsoft.AspNetCore.Mvc;
+﻿using backend.Interface;
+using backend.Model;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
 
-namespace backend.Controllers
+namespace backend.Regra
 {
-    public class FilmesController
+    public class CampeonatoRegras : ICampeonatoRegras
     {
         /// <summary>
         /// Método responsavel por realizar a copa
@@ -36,7 +35,7 @@ namespace backend.Controllers
         /// </summary>
         /// <param name="filmes"></param>
         /// <returns></returns>
-        private List<Filme> Balancear(List<Filme> filmes)
+        public List<Filme> Balancear(List<Filme> filmes)
         {
             List<Filme> balancear = new List<Filme>(filmes);
             List<Filme> resposta = new List<Filme>();
@@ -56,7 +55,7 @@ namespace backend.Controllers
         /// </summary>
         /// <param name="filmes"></param>
         /// <returns></returns>
-        private List<Filme> Jogar(List<Filme> filmes)
+        public List<Filme> Jogar(List<Filme> filmes)
         {
             List<Filme> resposta = new List<Filme>();
 
@@ -78,7 +77,7 @@ namespace backend.Controllers
         /// <param name="filmeA"></param>
         /// <param name="filmeB"></param>
         /// <returns></returns>
-        private Filme Desempate(Filme filmeA, Filme filmeB)
+        public Filme Desempate(Filme filmeA, Filme filmeB)
         {
             Filme resposta = new Filme();
 

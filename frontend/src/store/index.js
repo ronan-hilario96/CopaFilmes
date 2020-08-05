@@ -9,7 +9,7 @@ export default new Vuex.Store({
     filmes: [],
     filmesSelecionados: [],
     erroServico: null,
-    urlCopaFilmles: "https://localhost:5001/v1/CopaFilmes"
+    urlCopaFilmles: "https://localhost:44306/v1/CopaFilmes"
   },
   mutations: {
     SET_FILMES(state, filmes) {

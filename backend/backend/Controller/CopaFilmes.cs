@@ -32,20 +32,21 @@ namespace backend.Controller
         [HttpGet]
         [Route("Filmes")]
         public async Task<List<Filme>> Filmes()
-        
         {
-            List<Filme> resposta = new List<Filme>();
-            using (HttpClient client = new HttpClient())
-            using (HttpResponseMessage res = await client.GetAsync(URLCOPA))
-            using (HttpContent content = res.Content)
+            try
             {
-                string data = await content.ReadAsStringAsync();
-                if(data != null)
+                List<Filme> resposta = new List<Filme>();
+                using (HttpClient client = new HttpClient())
+                using (HttpResponseMessage res = await client.GetAsync(URLCOPA))
+                using (HttpContent content = res.Content)
                 {
-                    resposta = JsonSerializer.Deserialize<List<Filme>>(data);
+                    resposta = JsonSerializer.Deserialize<List<Filme>>(await content.ReadAsStringAsync());
                 }
+                return resposta;
+            } catch (Exception e)
+            {
+                throw e;
             }
-            return resposta;
         }
     }
 }

@@ -13,7 +13,7 @@ namespace backend.Regra
         /// </summary>
         /// <param name="filmes"></param>
         /// <returns></returns>
-        public List<Filme> Campeao(List<Filme> filmes)
+        public List<Filme> Campeao(IList<Filme> filmes)
         {
             if (filmes.Count != 8)
                 throw new Exception("itens na lista diferente de 8");

@@ -201,3 +201,4 @@ D:\Desenvolvimento\CopaFilmes\backend\TesteCopaFilmes\bin\Debug\netcoreapp3.1\ba
 D:\Desenvolvimento\CopaFilmes\backend\TesteCopaFilmes\bin\Debug\netcoreapp3.1\backend.pdb
 D:\Desenvolvimento\CopaFilmes\backend\TesteCopaFilmes\obj\Debug\netcoreapp3.1\TesteCopaFilmes.csproj.CopyComplete
 D:\Desenvolvimento\CopaFilmes\backend\TesteCopaFilmes\obj\Debug\netcoreapp3.1\TesteCopaFilmes.csproj.CoreCompileInputs.cache
+D:\Desenvolvimento\CopaFilmes\backend\TesteCopaFilmes\obj\Debug\netcoreapp3.1\TesteCopaFilmes.genruntimeconfig.cache

@@ -1,8 +1,10 @@
 using backend;
 using backend.Controller;
-using backend.Regra;
+using backend.Model;
+using backend.Regras;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.TestHost;
+using System.Collections.Generic;
 using System.Linq;
 using System.Net.Http;
 using TesteCopaFilmes.Mock;
@@ -39,9 +41,9 @@ namespace TesteCopaFilmes
         {
             var controller = new CopaFilmes(new CampeonatoRegras());
 
-            var filmes = controller.Filmes().Result;
+            var filmes = (List<Filme>)controller.Filmes().Result;
 
-            var vencedores = controller.Resultado(filmes.Take(8).ToList());
+            var vencedores = (List<Filme>)controller.Resultado(filmes.Take(8).ToList());
 
             Assert.Equal("Vingadores: Guerra Infinita", vencedores.First().titulo);
         }

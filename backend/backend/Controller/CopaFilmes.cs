@@ -27,9 +27,9 @@ namespace backend.Controller
 
         [HttpGet]
         [Route("Filmes")]
-        public Task<IEnumerable> Filmes()
+        public async Task<IEnumerable> Filmes()
         {
-            return _campeonatoRegras.ObtemCompetidores();
+            return await _campeonatoRegras.ObtemCompetidores();
         }
     }
 }

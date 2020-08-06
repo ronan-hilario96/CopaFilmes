@@ -13,6 +13,6 @@ namespace backend.Interface
         /// <param name="filmes"></param>
         /// <returns></returns>
         ICollection<Filme> Campeao(ICollection<Filme> filmes);
-        Task<IEnumerable> ObtemCompetidores();
+        Task<IEnumerable<Filme>> ObtemCompetidores();
     }
 }

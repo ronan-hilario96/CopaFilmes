@@ -100,9 +100,9 @@ namespace backend.Regras
         /// Obtem os filmes que iram competir
         /// </summary>
         /// <returns></returns>
-        public async Task<IEnumerable> ObtemCompetidores()
+        public async Task<IEnumerable<Filme>> ObtemCompetidores()
         {
-            return await Requisicao.Consultar<IEnumerable>(URLCOPA);
+            return await Requisicao.Consultar<IEnumerable<Filme>>(URLCOPA);
         }
     }
 }

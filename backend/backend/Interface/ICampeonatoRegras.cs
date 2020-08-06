@@ -1,5 +1,7 @@
 ﻿using backend.Model;
+using System.Collections;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 
 namespace backend.Interface
 {
@@ -10,6 +12,7 @@ namespace backend.Interface
         /// </summary>
         /// <param name="filmes"></param>
         /// <returns></returns>
-        List<Filme> Campeao(IList<Filme> filmes);
+        ICollection<Filme> Campeao(ICollection<Filme> filmes);
+        Task<IEnumerable> ObtemCompetidores();
     }
 }

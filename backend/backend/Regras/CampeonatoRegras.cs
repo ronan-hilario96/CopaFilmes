@@ -1,19 +1,24 @@
 ﻿using backend.Interface;
 using backend.Model;
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 
-namespace backend.Regra
+namespace backend.Regras
 {
     public class CampeonatoRegras : ICampeonatoRegras
     {
+        // Url de consulta de filmes disponiveis
+        private readonly string URLCOPA = "http://copafilmes.azurewebsites.net/api/filmes";
+
         /// <summary>
         /// Método responsavel por realizar a copa
         /// </summary>
         /// <param name="filmes"></param>
         /// <returns></returns>
-        public List<Filme> Campeao(IList<Filme> filmes)
+        public ICollection<Filme> Campeao(ICollection<Filme> filmes)
         {
             if (filmes.Count != 8)
                 throw new Exception("itens na lista diferente de 8");
@@ -35,7 +40,7 @@ namespace backend.Regra
         /// </summary>
         /// <param name="filmes"></param>
         /// <returns></returns>
-        public List<Filme> Balancear(List<Filme> filmes)
+        public List<Filme> Balancear(IList<Filme> filmes)
         {
             List<Filme> balancear = new List<Filme>(filmes);
             List<Filme> resposta = new List<Filme>();
@@ -55,7 +60,7 @@ namespace backend.Regra
         /// </summary>
         /// <param name="filmes"></param>
         /// <returns></returns>
-        public List<Filme> Jogar(List<Filme> filmes)
+        public List<Filme> Jogar(IList<Filme> filmes)
         {
             List<Filme> resposta = new List<Filme>();
 
@@ -90,6 +95,14 @@ namespace backend.Regra
             resposta = ordenar.OrderBy(x => x.titulo).ToList().FirstOrDefault();
 
             return resposta;
+        }
+        /// <summary>
+        /// Obtem os filmes que iram competir
+        /// </summary>
+        /// <returns></returns>
+        public async Task<IEnumerable> ObtemCompetidores()
+        {
+            return await Requisicao.Consultar<IEnumerable>(URLCOPA);
         }
     }
 }
